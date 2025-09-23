@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meat charset='utf-8'>
+    <title>공기공기_플래시</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+        @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+        body{
+            background-color: rgb(115, 165, 113);
+        }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/img_style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+</head>
+<body>
+    <a href = "http://127.0.0.1:5000">
+    <img class="home_button"
+    src="{{url_for('static', filename='IMG/button/plant.png')}}"
+    alt="inventory"></a>
+
+    <a href = "http://127.0.0.1:5000/inventory">
+    <img class="inventory_button"
+    src="{{url_for('static', filename='IMG/button/star.png')}}"
+    alt="home">
+    </a>
+
+    <iframe class = flash_video id = video
+        src="https://www.youtube.com/embed/Q3u8CCt_iw8?rel=0" 
+        title="미세먼지 때문이야! | 미세먼지의 개념과 대처방법 | 안심 건강★지니키즈" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+
+    <iframe class = flash_video2 id = video2
+        src="https://www.youtube.com/embed/8FuWcTKR1Mw?rel=0" 
+        title="미세먼지 유치원 및 초등 저학년 교육자료" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+    </iframe>
+
+    <iframe class = flash_video3 id = video3
+    src="https://www.youtube.com/embed/k-pvdkwL6yw?rel=0" 
+    title="바로 써먹는 어린이·청소년  고농도 미세먼지 대응법" 
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+    </iframe>
+
+    <script>
+        let exp = 20;
+        setInterval(function(){
+            if($(".video").prop("ended")){
+            exp = Number(exp) + 7
+            alert(exp)
+            }
+        },200);
+    </script>
+
+
+    
+    <img class = 'flash_button' id='home'
+    src="{{url_for('static', filename='IMG/button/home.png')}}"
+    alt="home">
+    <a href = "http://127.0.0.1:5000/main">
+        <img class = 'flash_button' id='home'
+        src="{{url_for('static', filename='IMG/button/home.png')}}"
+        alt="home">
+    </a>
+
+</body>
+</html>

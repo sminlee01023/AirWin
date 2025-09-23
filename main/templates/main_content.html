@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meat charset='utf-8'>
+    <title>공기공기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+        @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+        body{background-color: rgb(221, 208, 245);}
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/img_style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+</head>
+<body>
+    <a href = "http://127.0.0.1:5000">
+    <img class="home_button"
+    src="{{url_for('static', filename='IMG/button/plant.png')}}"
+    alt="inventory"></a>
+    
+    
+    <a href = "http://127.0.0.1:5000/flash">
+    <img class="flash_button" id='flash'
+    src="{{url_for('static', filename='IMG/button/flash.png')}}"
+    alt="flash">
+    </a>
+
+
+    <img class="window" id="window"
+    src="{{url_for('static', filename='IMG/window/맑음/닫힘.png')}}"
+    alt="window">
+    <img class="kindergarden"
+    src="{{url_for('static', filename='IMG/kindergarden.png')}}"
+    alt="kindergarden">
+    <img class="notice"
+    src="{{url_for('static', filename='IMG/board.png')}}"
+    alt="board">
+
+
+    
+
+    <img class="dialogue" id="bubble"
+    src="{{url_for('static', filename='IMG/dialogue/bubble.png')}}"
+    alt="talk">
+
+    <img class="dust" id = 'dust' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/dust.gif')}}"
+    alt="dust_villain">
+    <img class="dust2" id = 'dust2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/dust2.gif')}}"
+    alt="dust_villain">
+    <img class="dust3" id = 'dust3' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/dust3.gif')}}"
+    alt="dust_villain">
+
+    
+    
+
+    <img class="exp_dot"
+    src="{{url_for('static', filename='IMG/ex/dot.png')}}"
+    alt="exp_background">
+    <img class="exp_background"
+    src="{{url_for('static', filename='IMG/ex/yellow.png')}}"
+    alt="exp_background">
+    <img class="exp_bar" id = 'exp_bar'
+    src="{{url_for('static', filename='IMG/ex/pink.png')}}"
+    alt="exp_bar">
+    <img class="exp_plant"
+    src="{{url_for('static', filename='IMG/ex/plant.png')}}"
+    alt="exp_background">
+    <div class="level">
+        <h5>Level 3</h5>
+    </div>
+
+    <img class="weather_char" id="weather_char"
+    src="{{url_for('static', filename='IMG/weather/맑음.png')}}"
+    alt="weather_character">
+
+    <div class="weather">
+        <h5>{{weather}}</h5>
+    </div>
+
+    {% if (weather == '맑음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('weather_char').src = '../static/IMG/weather/맑음.png';
+            document.getElementById('window').src = '../static/IMG/window/맑음/닫힘.png';
+        </script>
+    {% endif %}
+    {% if (weather == '눈'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('weather_char').src = '../static/IMG/weather/눈.png';
+            document.getElementById('window').src = '../static/IMG/window/눈/닫힘.png';
+        </script>
+    {% endif %}
+    {% if (weather == '비'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('weather_char').src = '../static/IMG/weather/비.png';
+            document.getElementById('window').src = '../static/IMG/window/비/닫힘.png';
+        </script>
+    {% endif %}
+    {% if (weather == '흐림'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('weather_char').src = '../static/IMG/weather/흐림.png';
+        </script>
+    {% endif %}
+    {% if (weather == '구름많음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('weather_char').src = '../static/IMG/weather/구름많음.png';
+        </script>
+    {% endif %}
+
+    <div class="degree">
+        <h5>{{temp}}℃</h5>
+    </div>
+
+    <div class="fine_dust">
+        <h5>미세먼지 <br>
+            {{fine_dust_level}} ({{fine_dust_grade}})</h5>
+    </div>
+    
+    <img class="fine_dust_char" id ="fine_dust_char"
+    src="{{url_for('static', filename='IMG/dust_condition/나쁨.png')}}"
+    alt="dust_condition">
+
+    <div class="ultra_fine_dust">
+        <h5>초미세먼지 <br>
+            {{ultra_fine_dust_level}} ({{ultra_fine_dust_grade}})</h5>
+    </div>
+    <img class="ultra_fine_dust_char" id="ultra_fine_dust_char"
+    src="{{url_for('static', filename='IMG/dust_condition/나쁨.png')}}"
+    alt="dust_condition">
+
+    <h1 id="clock">clock</h1>
+    <script>
+        var Target = document.getElementById("clock");
+        function clock() {
+            var time = new Date();
+
+            var month = time.getMonth();
+            var date = time.getDate();
+            var day = time.getDay();
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+
+            var x = document.getElementById('clock');
+            x.style.fontFamily = 'Nanum Pen Script';
+            x.style.fontSize = "25px";
+            x.style.fontWeight = 'bold';
+            x.style.color= '#7e4b2b';
+            x.style.width = '500px';
+            x.style.height = '20px';
+            x.style.position = 'absolute';
+            x.style.top = '165px';
+            x.style.right = '-40px';
+            Target.innerText = 
+            `오늘은! ${month + 1}월 ${date}일 ${week[day]}요일    ` +
+            `지금은! ${hours < 10 ? `0${hours}` : hours}시 ${minutes < 10 ? `0${minutes}` : minutes}분 ${seconds < 10 ? `0${seconds}` : seconds}초`;      
+        }
+        clock();
+        setInterval(clock, 1000); // 1초마다 실행
+    </script>
+
+    <div class="indoor_dust">
+        <h5>현재 실내 미세먼지 농도는? {{indoor_dust}}!</h5>
+    </div>
+
+    {% if (fine_dust_grade == '좋음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('fine_dust_char').src = '../static/IMG/dust_condition/좋음.png';
+        </script>
+    {% endif %}
+    {% if (fine_dust_grade == '매우좋음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('fine_dust_char').src = '../static/IMG/dust_condition/매우좋음.png';
+        </script>
+    {% endif %}
+    {% if (fine_dust_grade == '보통'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('fine_dust_char').src = '../static/IMG/dust_condition/보통.png';
+        </script>
+    {% endif %}
+
+
+    {% if (ultra_fine_dust_grade == '좋음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('ultra_fine_dust_char').src = '../static/IMG/dust_condition/좋음.png';
+        </script>
+    {% endif %}
+    {% if (ultra_fine_dust_grade == '매우좋음'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('ultra_fine_dust_char').src = '../static/IMG/dust_condition/매우좋음.png';
+        </script>
+    {% endif %}
+    {% if (ultra_fine_dust_grade == '보통'):%}
+        <script type = 'text/javascript'>
+            document.getElementById('ultra_fine_dust_char').src = '../static/IMG/dust_condition/보통.png';
+        </script>
+    {% endif %}
+
+    <img class="default_pot1" id = 'dp1' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/default_pot1.png')}}"
+    alt="pot">
+    <img class="pot12" id = 'p12' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot12.png')}}"
+    alt="pot">
+    <img class="pot22" id = 'p22' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot22.png')}}"
+    alt="pot">
+
+    <img class="bulb2" id = 'bulb2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/bulb2.png')}}"
+    alt="pot">
+    <img class="light12" id = 'l12' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light12.png')}}"
+    alt="pot">
+    <img class="light22" id = 'l22' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light22.png')}}"
+    alt="pot">
+    <img class="light32" id = 'l32' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light32.png')}}"
+    alt="pot">
+
+    <img class="inventory_button" id = 'int' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/button/star.png')}}"
+    alt="int">
+    <img class="plants" id = 'plants' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/L2/leaf.png')}}"
+    alt="board">
+    <img class="pot32" id = 'p32' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot32.png')}}"
+    alt="pot">
+    <img class="pot42" id = 'p42' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot42.png')}}"
+    alt="pot">
+    <img class="name_tag" id = 'name_tag' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/tag.png')}}"
+    alt="board">
+    <img class="plant_face" id="face"
+    src="{{url_for('static', filename='IMG/plant/embarrassed.gif')}}"
+    alt="board">
+    <img class="blank2" id = 'bl2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/blank.png')}}"
+    alt="bl">
+    <img class="sunglass12" id = 'sg12' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass12.png')}}"
+    alt="pot">
+    <img class="sunglass22" id = 'sg22' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass22.png')}}"
+    alt="pot">
+    <img class="sunglass32" id = 'sg32' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass32.png')}}"
+    alt="pot">
+    <img class="blank22" id = 'ov22' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/blank.png')}}"
+    alt="pot">
+
+
+    <img class="green4" id = 'gr' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/green4.png')}}"
+    alt="int">
+    <img class="happy" id = 'hap' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/happy.png')}}"
+    alt="happy">
+    <img class="depressed" id = 'dep' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/depressed.png')}}"
+    alt="depressed">
+    <img class="sad" id = 'sad' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sad.png')}}"
+    alt="sad">
+    <img class="fun" id = 'fun' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/fun.png')}}"
+    alt="fun">
+    <img class="smile" id = 'smile' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/smile.png')}}"
+    alt="smile">
+  
+    <img class="default_pot" id = 'dp' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/default_pot.png')}}"
+    alt="default_pot">
+    <img class="pot1" id = 'p1' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot1.png')}}"
+    alt="pot1">
+    <img class="pot2" id = 'p2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot2.png')}}"
+    alt="pot2">
+    <img class="pot4" id = 'p4' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot4.png')}}"
+    alt="pot4">
+    <img class="pot3" id = 'p3' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/pot3.png')}}"
+    alt="pot3">
+
+    <img class="sunglass2" id = 'sg2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass2.png')}}"
+    alt="sunglass2">
+    <img class="sunglass1" id = 'sg1' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass1.png')}}"
+    alt="sunglass1">
+    <img class="sunglass3" id = 'sg3' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/sunglass3.png')}}"
+    alt="sunglass3">
+    <img class="oval" id = 'ov' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/no.png')}}"
+    alt="pot">
+    <img class="blank" id = 'bl' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/blank.png')}}"
+    alt="bl">
+    <img class="oval2" id = 'ov2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/no.png')}}"
+    alt="pot">
+    <img class="blank22" id = 'bl22' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/blank.png')}}"
+    alt="bl">
+    <img class="blank23" id = 'bl23' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/blank.png')}}"
+    alt="bl">
+  
+    <img class="light1" id = 'l1' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light1.png')}}"
+    alt="light1">
+    <img class="light2" id = 'l2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light2.png')}}"
+    alt="light2">
+    <img class="light3" id = 'l3' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/light3.png')}}"
+    alt="light3">
+    <img class="bulb" id = 'bulb' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/plant/bulb.png')}}"
+    alt="bulb">
+  
+    <img class="kindergarden" id = 'kin' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/kindergarden.png')}}"
+    alt="kindergarden">
+  
+    <img class="step1" id = 's1' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/step1.png')}}"
+    alt="step1">
+    <img class="step2" id = 's2' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/step2.png')}}"
+    alt="step2">
+    <img class="step4" id = 's4' style='cursor:pointer'
+    src="{{url_for('static', filename='IMG/pot/step4.png')}}"
+    alt="step4">
+  
+    <div class="grow" id="grow">
+      <h5>성장앨범</h5>
+    </div>
+    <div class="deco" id="deco">
+      <h5>꾸미기</h5>
+    </div>
+
+
+    <script>
+        $(document).ready(function(){
+            $("#ov2").hide();
+            $("#ov22").hide();
+            $("#ov1").hide();
+            $("#ov").hide();
+            $("#plants").show();
+            $("#name_tag").show();
+            $("#plant_face").show();
+            $("#gr").hide();
+            $("#hap").hide();
+            $("#dep").hide();
+            $("#sad").hide();
+            $("#fun").hide();
+            $("#smile").hide();
+            $("#l1").hide();
+            $("#l2").hide();
+            $("#l3").hide();
+            $("#bulb").hide();
+            $("#dp").hide();
+            $("#p1").hide();
+            $("#p2").hide();
+            $("#p3").hide();
+            $("#p4").hide();
+            $("#bl").hide();
+            $("#sg2").hide();
+            $("#sg1").hide();
+            $("#sg3").hide();
+            $("#ki").hide();
+            $("#s1").hide();
+            $("#s2").hide();
+            $("#s4").hide();
+            $("#grow").hide();
+            $("#deco").hide();
+            $("#kin").hide();
+            $("#l12").hide();
+            $("#l22").hide();
+            $("#l32").hide();
+            $("#bulb2").hide();
+            $("#dp1").show();
+            $("#p12").hide();
+            $("#p22").hide();
+            $("#p32").hide();
+            $("#p42").hide();
+            $("#bl2").show();
+            $("#sg22").hide();
+            $("#sg12").hide();
+            $("#sg32").hide();
+            $("#ov22").hide();
+
+
+
+            $("#int").click(function(){
+                $("#ov2").show();
+                $("#ov1").show();
+                $("#ov").show();
+                $("#plant").show()
+                $("#plants").hide();
+                $("#name_tag").hide();
+                $("#plant_face").hide();
+                $("#gr").show();
+                $("#hap").show();
+                $("#dep").show();
+                $("#sad").show();
+                $("#fun").show();
+                $("#smile").show();
+                $("#l1").show();
+                $("#l2").show();
+                $("#l3").show();
+                $("#bulb").show();
+                $("#dp").show();
+                $("#p1").show();
+                $("#p2").show();
+                $("#p3").show();
+                $("#p4").show();
+                $("#bl").show();
+                $("#sg2").show();
+                $("#sg1").show();
+                $("#sg3").show();
+                $("#ki").show();
+                $("#s1").show();
+                $("#s2").show();
+                $("#s4").show();
+                $("#grow").show();
+                $("#deco").show();
+                $("#kin").show();
+            });
+            $("#p1").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#dp1").hide();
+                $("#p12").show();
+                $("#p22").hide();
+                $("#p32").hide();
+                $("#p42").hide();
+            });
+
+
+            $("#p2").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#dp1").hide();
+                $("#p12").hide();
+                $("#p22").show();
+                $("#p32").hide();
+                $("#p42").hide();
+            });
+
+            $("#dp").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#dp1").show();
+                $("#p12").hide();
+                $("#p22").hide();
+                $("#p32").hide();
+                $("#p42").hide();
+            });
+
+            $("#p3").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#dp1").hide();
+                $("#p12").hide();
+                $("#p22").hide();
+                $("#p32").show();
+                $("#p42").hide();
+            });
+
+            $("#p4").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#dp1").hide();
+                $("#p12").hide();
+                $("#p22").hide();
+                $("#p32").hide();
+                $("#p42").show();
+            });
+
+            $("#sg2").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#bulb2").hide();
+                $("#sg22").show();
+                $("#sg12").hide();
+                $("#sg32").hide();
+                $("#bl").hide();
+                $("#bl2").hide();
+            });
+
+            $("#sg1").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#bulb2").hide();
+                $("#sg22").hide();
+                $("#sg12").show();
+                $("#sg32").hide();
+                $("#bl").hide();
+                $("#bl2").hide();
+            });
+            $("#sg3").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#bulb2").hide();
+                $("#sg22").hide();
+                $("#sg12").hide();
+                $("#sg32").show();
+                $("#bl").hide();
+                $("#bl2").hide();
+            });
+            $("#bl").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#bulb2").hide();
+                $("#sg22").hide();
+                $("#sg12").hide();
+                $("#sg32").hide();
+                $("#bl").hide();
+                $("#bl2").show();
+            });
+
+            $("#l1").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#l12").show();
+                $("#l22").hide();
+                $("#l32").hide();
+                $("#bulb2").hide();
+                $("#ov22").hide();
+            });
+
+            $("#l2").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#l12").hide();
+                $("#l22").show();
+                $("#l32").hide();
+                $("#bulb2").hide();
+                $("#ov22").hide();
+            });
+
+            $("#l3").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#l12").hide();
+                $("#l22").hide();
+                $("#l32").show();
+                $("#bulb2").hide();
+                $("#ov22").hide();
+            });
+
+            $("#bulb").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#l12").hide();
+                $("#l22").hide();
+                $("#l32").hide();
+                $("#bulb2").show();
+                $("#ov22").hide();
+            });
+
+            $("#bl22").click(function(){
+                $("#ov2").hide();
+                $("#ov1").hide();
+                $("#ov").hide();
+                $("#plant").show()
+                $("#plants").show();
+                $("#name_tag").show();
+                $("#plant_face").show();
+                $("#int").show();
+                $("#gr").hide();
+                $("#hap").hide();
+                $("#dep").hide();
+                $("#sad").hide();
+                $("#fun").hide();
+                $("#smile").hide();
+                $("#l1").hide();
+                $("#l2").hide();
+                $("#l3").hide();
+                $("#bulb").hide();
+                $("#dp").hide();
+                $("#p1").hide();
+                $("#p2").hide();
+                $("#p3").hide();
+                $("#p4").hide();
+                $("#sg2").hide();
+                $("#sg1").hide();
+                $("#sg3").hide();
+                $("#ki").hide();
+                $("#s1").hide();
+                $("#s2").hide();
+                $("#s4").hide();
+                $("#grow").hide();
+                $("#deco").hide();
+                $("#kin").hide();
+                $("#l12").hide();
+                $("#l22").hide();
+                $("#l32").hide();
+                $("#bulb2").hide();
+                $("#bl23").show();
+            });
+
+
+
+        });
+
+    </script>
+
+    {% if (indoor_dust < 35):%}
+    <script type = 'text/javascript'>
+        $("#dust").hide();
+        $("#dust2").hide();
+        $("#dust3").hide();
+        document.getElementById('face').src = '../static/IMG/plant/smile.gif';
+    </script>
+    <div class="talk" id = 'talk'>
+        <p align="center">안녕!<br>지금 미세먼지는<br>{{fine_dust_grade}}이야</p>
+    </div>
+    {% endif %} 
+    <script type = 'text/javascript'>
+        setTimeout(function () {
+            $("#bubble").hide();
+            $("#talk").hide();
+        }, 5000);
+    </script> 
+    {% if (indoor_dust >= 35):%}
+    <script type = 'text/javascript'>
+        $("#dust").show();
+        $("#dust2").show();
+        $("#dust3").show();
+        document.getElementById('face').src = '../static/IMG/plant/embarrassed.gif';
+    </script>
+    <div class="talk" id = 'talk'>
+        <p align="center">으악! 먼지악당이다!<br>먼지 악당을 눌러서<br>창문을 열어야해! </p>
+    </div>
+    {% endif %}
+
+
+
+
+
+
+    <script type = 'text/javascript'>
+        var d1 = document.getElementById('dust');
+        var d2 = document.getElementById('dust2');
+        var d3 = document.getElementById('dust3');
+
+        var i = 0;
+
+        function btn_listener(event) {
+            i = Number(i) + 1;
+            if (i == 3) {
+                document.getElementById('face').src = '../static/IMG/plant/smile.gif';
+                $('#exp_bar').css('width', '170px');
+                document.getElementById('window').src = '../static/IMG/window/맑음/열기.gif';
+                setTimeout(function() {
+                    document.getElementById('window').src = '../static/IMG/window/맑음/열림.png';
+                    $("#talk").text("먼지악당을 해치웠어!! \n 정말 고마워! \n 앞으로도 잘 부탁해");
+                }, 2000);
+                setTimeout(function() {
+                    document.getElementById('window').src = '../static/IMG/window/맑음/닫기.gif';
+                }, 7250);
+                setTimeout(function() {
+                    document.getElementById('window').src = '../static/IMG/window/맑음/닫힘.png';
+                }, 9250);
+                alert('동작')
+                
+                setTimeout(function () {
+                    $("#bubble").hide();
+                    $("#talk").hide();
+                }, 50000);
+                
+                (event.target.id).hide();
+
+                
+
+
+
+            }
+            else
+                (event.target.id).hide();
+        }        
+        d1.addEventListener('click', btn_listener);
+        d2.addEventListener('click', btn_listener);
+        d3.addEventListener('click', btn_listener);
+
+        $("#dust").click(function(){
+            $("#dust").hide();});
+        $("#dust2").click(function(){
+            $("#dust2").hide();});
+        $("#dust3").click(function(){
+            $("#dust3").hide();});  
+    </script>
+
+</body>
+
+
+</body>
+</html>

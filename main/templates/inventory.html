@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meat charset='utf-8'>
+    <title>공기공기</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+        @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+        body{
+            background-color: rgb(221, 208, 245);
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/int_style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+</head>
+
+<body>
+  <button type="button">
+      <img class="plant_button"
+      src="{{url_for('static', filename='IMG/button/plant.png')}}"
+      alt="inventory">
+  </button>
+  <button type="button">
+      <img class="flash_button"
+      src="{{url_for('static', filename='IMG/button/flash.png')}}"
+      alt="flash">
+  </button>
+
+
+  <a href = "http://127.0.0.1:5000/main">
+  <img class="home2_button" id='home'
+  src="{{url_for('static', filename='IMG/button/home.png')}}"
+  alt="home">
+  </a>
+
+  <img class="happy"
+  src="{{url_for('static', filename='IMG/plant/happy.png')}}"
+  alt="happy">
+  <img class="depressed"
+  src="{{url_for('static', filename='IMG/plant/depressed.png')}}"
+  alt="depressed">
+  <img class="sad"
+  src="{{url_for('static', filename='IMG/plant/sad.png')}}"
+  alt="sad">
+  <img class="fun"
+  src="{{url_for('static', filename='IMG/plant/fun.png')}}"
+  alt="fun">
+  <img class="smile"
+  src="{{url_for('static', filename='IMG/plant/smile.png')}}"
+  alt="smile">
+
+  <img class="default_pot"
+  src="{{url_for('static', filename='IMG/pot/default_pot.png')}}"
+  alt="default_pot">
+  <img class="pot1"
+  src="{{url_for('static', filename='IMG/pot/pot1.png')}}"
+  alt="pot1">
+  <img class="pot2"
+  src="{{url_for('static', filename='IMG/pot/pot2.png')}}"
+  alt="pot2">
+  <img class="pot4"
+  src="{{url_for('static', filename='IMG/pot/pot4.png')}}"
+  alt="pot4">
+  <img class="pot3"
+  src="{{url_for('static', filename='IMG/pot/pot3.png')}}"
+  alt="pot3">
+
+  <img class="sunglass2"
+  src="{{url_for('static', filename='IMG/plant/sunglass2.png')}}"
+  alt="sunglass2">
+  <img class="sunglass1"
+  src="{{url_for('static', filename='IMG/plant/sunglass1.png')}}"
+  alt="sunglass1">
+  <img class="sunglass3"
+  src="{{url_for('static', filename='IMG/plant/sunglass3.png')}}"
+  alt="sunglass3">
+
+  <img class="light1"
+  src="{{url_for('static', filename='IMG/plant/light1.png')}}"
+  alt="light1">
+  <img class="light2"
+  src="{{url_for('static', filename='IMG/plant/light2.png')}}"
+  alt="light2">
+  <img class="light3"
+  src="{{url_for('static', filename='IMG/plant/light3.png')}}"
+  alt="light3">
+  <img class="bulb"
+  src="{{url_for('static', filename='IMG/plant/bulb.png')}}"
+  alt="bulb">
+
+  <img class="kindergarden"
+  src="{{url_for('static', filename='IMG/kindergarden.png')}}"
+  alt="kindergarden">
+
+  <img class="step1"
+  src="{{url_for('static', filename='IMG/pot/Lv1.png')}}"
+  alt="step1">
+  <img class="step2"
+  src="{{url_for('static', filename='IMG/pot/Lv2.png')}}"
+  alt="step2">
+  <img class="step4"
+  src="{{url_for('static', filename='IMG/pot/Lv3.png')}}"
+  alt="step4">
+
+  <div class="grow">
+    <h5>성장앨범</h5>
+  </div>
+  <div class="deco">
+    <h5>꾸미기</h5>
+  </div>
