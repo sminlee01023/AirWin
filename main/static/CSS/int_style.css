@@ -1,0 +1,224 @@
+.plant_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 30px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.flash_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 135px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.home2_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 260px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.happy {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 300px;
+  object-fit: contain;
+}
+.depressed {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 400px;
+  object-fit: contain;
+}
+.sad {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 500px;
+  object-fit: contain;
+}
+.fun {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 600px;
+  object-fit: contain;
+}
+.smile {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 700px;
+  object-fit: contain;
+}
+.light1 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.light2 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 980px;
+  object-fit: contain;
+}
+.light3 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 1110px;
+  object-fit: contain;
+}
+.bulb {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 1240px;
+  object-fit: contain;
+}
+.default_pot {
+  position: absolute;
+  width: 110px;
+  height: 80px;
+  top: 450px;
+  left: 300px;
+  object-fit: contain;
+}
+.pot1 {
+  position: absolute;
+  width: 130px;
+  height: 110px;
+  top: 433px;
+  left: 390px;
+  object-fit: contain;
+}
+.pot2 {
+  position: absolute;
+  width: 117px;
+  height: 95px;
+  top: 439px;
+  left: 489px;
+  object-fit: contain;
+}
+.pot3 {
+  position: absolute;
+  width: 115px;
+  height: 100px;
+  top: 435px;
+  left: 590px;
+  object-fit: contain;
+}
+.pot4 {
+  position: absolute;
+  width: 140px;
+  height: 110px;
+  top: 435px;
+  left: 675px;
+  object-fit: contain;
+}
+.sunglass2 {
+  position: absolute;
+  width: 140px;
+  height: 110px;
+  top: 435px;
+  left: 830px;
+  object-fit: contain;
+}
+.sunglass1 {
+  position: absolute;
+  width: 150px;
+  height: 110px;
+  top: 435px;
+  left: 960px;
+  object-fit: contain;
+}
+.sunglass3 {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 435px;
+  left: 1090px;
+  object-fit: contain;
+}
+.kindergarden {
+  position: absolute;
+  width: 200px;
+  height: 90px;
+  top: 30px;
+  right: 30px;
+  object-fit: contain;
+}
+
+.step1 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 95px;
+  left: 290px;
+  object-fit: contain;
+}
+.step2 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 85px;
+  left: 450px;
+  object-fit: contain;
+}
+.step4 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 70px;
+  left: 610px;
+  object-fit: contain;
+}
+
+.grow {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 4.0em;
+  color: #287808;
+  
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  top: -35px;
+  left: 290px;
+  object-fit: contain;
+}
+.deco {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 4.5em;
+  color: #287808;
+  
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  top: 250px;
+  left: 300px;
+  object-fit: contain;
+}

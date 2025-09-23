@@ -1,0 +1,701 @@
+.home_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 30px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.inventory_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 135px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.flash_button {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 260px;
+  left: 30px;
+  object-fit: fill;
+  cursor: pointer;
+}
+
+.dialogue {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  bottom: 250px;
+  left: 350px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.talk {
+  font-family: 'Jua', sans-serif;
+  font-size: 1.8em;
+  color: #000000;
+  
+  position: absolute;
+  width: 240px;
+  height: 130px;
+  bottom: 460px;
+  left: 465px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.flash_video {
+  position: absolute;
+  width: 350px;
+  height: 213px;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  object-fit: scale-down;
+}
+
+.flash_video2 {
+  position: absolute;
+  width: 350px;
+  height: 213px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: scale-down;
+}
+
+.flash_video3 {
+  position: absolute;
+  width: 350px;
+  height: 213px;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  object-fit: scale-down;
+}
+
+.window {
+  position: absolute;
+  width: 450px;
+  height: 453px;
+  top: 50px;
+  left: 200px;
+  object-fit: contain;
+}
+
+.kindergarden {
+  position: absolute;
+  width: 200px;
+  height: 90px;
+  top: 30px;
+  right: 30px;
+  object-fit: contain;
+}
+
+.notice {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  top: -20px;
+  right: 30px;
+  object-fit: contain;
+}
+
+.plants {
+  position: absolute;
+  width: 125px;
+  height: 150px;
+  bottom: 175px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  object-position: top 30px;
+}
+
+.name_tag {
+  position: absolute;
+  width: 125px;
+  height: 70px;
+  bottom: 35px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.plant_face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.dust {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  bottom: 250px;
+  left: 470px;
+  object-fit: contain;
+}
+
+.dust2 {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  bottom: 300px;
+  right: 670px;
+  object-fit: contain;
+}
+
+.dust3 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  bottom: 250px;
+  right: 530px;
+  object-fit: contain;
+}
+
+.exp_dot {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  bottom: 70px;
+  right: 330px;
+  object-fit: contain;
+}
+
+.exp_background {
+  position: absolute;
+  width: 280px;
+  height: 50px;
+  bottom: 50px;
+  right: 80px;
+  object-fit: contain;
+}
+
+.exp_bar {
+  position: absolute;
+  height: 22px;
+  width: 160px;
+  bottom: 64px;
+  right: 95px;
+  object-fit: fill;
+}
+
+.exp_plant {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  bottom: 60px;
+  right: 30px;
+  object-fit: contain;
+}
+
+.level {
+  font-family: 'Staatliches', cursive;
+  font-size: 2.7em;
+  color: #f164b4;
+  text-shadow: 5px 5px #f0b4e1;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  bottom: 170px;
+  right: 90px;
+  object-fit: contain;
+}
+
+.weather_char {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  top: 210px;
+  right: 170px;
+  object-fit: contain;
+}
+
+.weather {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2.5em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  top: 170px;
+  right: 60px;
+  object-fit: contain;
+}
+
+.degree {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2.5em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  top: 170px;
+  right: 150px;
+  object-fit: contain;
+}
+
+.fine_dust {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  top: 245px;
+  right: 125px;
+  object-fit: contain;
+}
+
+.fine_dust_char {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 290px;
+  right: 390px;
+  object-fit: contain;
+}
+
+.ultra_fine_dust {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  top: 245px;
+  right: -35px;
+  object-fit: contain;
+}
+
+.ultra_fine_dust_char {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 290px;
+  right: 230px;
+  object-fit: contain;
+}
+
+.clock{
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.5em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 260px;
+  height: 20px;
+  top: 230px;
+  right: 330px;
+  object-fit: contain;
+}
+
+.indoor_dust{
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 2.3em;
+  color: #7e4b2b;
+  
+  position: absolute;
+  width: 300px;
+  height: 20px;
+  top: 320px;
+  right: 150px;
+  object-fit: contain;
+}
+
+.green4 {
+  position: absolute;
+  width: 1500px;
+  height: 2000px;
+  bottom: 0px;
+  left: 0px;
+  object-fit: fill;
+}
+
+.rectangle {
+  position: absolute;
+  width: 1370px;
+  height: 650px;
+  top: 20px;
+  left: 150px;
+  background: rgb(221, 208, 245);
+  object-fit: contain
+}
+
+.happy {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 300px;
+  object-fit: contain;
+}
+.depressed {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 400px;
+  object-fit: contain;
+}
+.sad {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 500px;
+  object-fit: contain;
+}
+.fun {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 600px;
+  object-fit: contain;
+}
+.smile {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  top: 550px;
+  left: 700px;
+  object-fit: contain;
+}
+
+
+.light1 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.light2 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 980px;
+  object-fit: contain;
+}
+.light3 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 1110px;
+  object-fit: contain;
+}
+.bulb {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 1240px;
+  object-fit: contain;
+}
+
+.oval2 {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 525px;
+  left: 1350px;
+  object-fit: contain;
+}
+
+.blank22 {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 525px;
+  left: 1350px;
+  object-fit: contain;
+}
+.default_pot{
+  position: absolute;
+  width: 110px;
+  height: 80px;
+  top: 450px;
+  left: 300px;
+  object-fit: contain;
+}
+.pot1 {
+  position: absolute;
+  width: 130px;
+  height: 110px;
+  top: 433px;
+  left: 390px;
+  object-fit: contain;
+}
+.pot2 {
+  position: absolute;
+  width: 117px;
+  height: 95px;
+  top: 439px;
+  left: 489px;
+  object-fit: contain;
+}
+.pot3 {
+  position: absolute;
+  width: 115px;
+  height: 100px;
+  top: 435px;
+  left: 590px;
+  object-fit: contain;
+}
+.pot4 {
+  position: absolute;
+  width: 140px;
+  height: 110px;
+  top: 435px;
+  left: 675px;
+  object-fit: contain;
+}
+
+
+.sunglass2 {
+  position: absolute;
+  width: 140px;
+  height: 110px;
+  top: 435px;
+  left: 830px;
+  object-fit: contain;
+}
+.sunglass1 {
+  position: absolute;
+  width: 150px;
+  height: 110px;
+  top: 435px;
+  left: 960px;
+  object-fit: contain;
+}
+.sunglass3 {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 435px;
+  left: 1090px;
+  object-fit: contain;
+}
+.blank {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 435px;
+  left: 1220px;
+  object-fit: contain;
+}
+.oval {
+  position: absolute;
+  width: 150px;
+  height: 115px;
+  top: 435px;
+  left: 1220px;
+  object-fit: contain;
+}
+
+
+.kindergarden {
+  position: absolute;
+  width: 200px;
+  height: 90px;
+  top: 30px;
+  right: 30px;
+  object-fit: contain;
+}
+
+.step1 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 95px;
+  left: 290px;
+  object-fit: contain;
+}
+.step2 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 85px;
+  left: 450px;
+  object-fit: contain;
+}
+.step4 {
+  position: absolute;
+  width: 130px;
+  height: 300px;
+  top: 70px;
+  left: 610px;
+  object-fit: contain;
+}
+
+.grow {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 4.0em;
+  color: #287808;
+  
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  top: -35px;
+  left: 290px;
+  object-fit: contain;
+}
+.deco {
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 4.5em;
+  color: #287808;
+  
+  position: absolute;
+  width: 150px;
+  height: 20px;
+  top: 250px;
+  left: 300px;
+  object-fit: contain;
+}
+
+.blank23 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.light12 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.light22 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.light32 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.bulb2 {
+  position: absolute;
+  width: 110px;
+  height: 90px;
+  top: 530px;
+  left: 850px;
+  object-fit: contain;
+}
+.default_pot1 {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  bottom: -75px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.pot12 {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  bottom: -127px;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.pot22 {
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  bottom: -90px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.pot32 {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  bottom: -130px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.pot42 {
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  bottom: -150px;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+
+.blank2 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.sunglass22 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.sunglass12 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+.sunglass32 {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  bottom: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
