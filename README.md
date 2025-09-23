@@ -10,10 +10,18 @@ This is a simple project designed to maintain a healthy indoor environment by se
 It is a lightweight IoT prototype project for smart home and environmental automation.
 
 
+- **Hardware:** Arduino-based sensors and actuators  
+- **Web Interface:** Built with Flask (Python) for monitoring and control
+
+
+---
+
+## Features  
+
 - Collects real-time air quality data from sensors  
 - Compares against predefined thresholds  
 - Automatically opens/closes a window
-
+- Simple Flask-based web dashboard for status monitoring and manual control  
 
 ---
 
